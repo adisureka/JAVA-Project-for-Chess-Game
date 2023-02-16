@@ -3,7 +3,7 @@
 * Class King -
 * We want this file to have methods that other files can inherit.
 */
-class King {
+class King extends Chess {
 
   private int row;
   private int column;
@@ -13,9 +13,10 @@ class King {
   * King Constructor with 3 parameters.
   */
   public King(int row, int column, Color color) {
-    this.row = row;
-    this.column = column;
-    this.color = color;
+    //this.row = row;
+    //this.column = column;
+    //this.color = color;
+    super(row, column, color);
   }
 
   /**
@@ -26,7 +27,8 @@ class King {
 
   /**
   *
-  */  
+  */
+  @Override
   public boolean canMove(int row, int column) {
     
     // Case Diagonal (Square -1, -1), 
@@ -89,7 +91,8 @@ class King {
 
   /**
   *
-  */  
+  */
+  //@Override
   public boolean canAttack(King other) {
     if (this.color == other.getColor()) {
       return false;
