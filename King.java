@@ -13,10 +13,9 @@ class King extends Chess {
   * King Constructor with 3 parameters.
   */
   public King(int row, int column, Color color) {
-    //this.row = row;
-    //this.column = column;
-    //this.color = color;
-    super(row, column, color);
+    this.row = row;
+    this.column = column;
+    this.color = color;
   }
 
   /**
@@ -27,34 +26,31 @@ class King extends Chess {
 
   /**
   *
-  */
-  @Override
+  */  
   public boolean canMove(int row, int column) {
-    
-    // Case Diagonal (Square -1, -1), 
-    if ((row == this.row - 1 && column == this.column - 1) || (row == this.row + 1 && column == this.column - 1)
-          || (row == this.row + 1 && column == this.column + 1) || (row == this.row - 1 && column == this.column + 1)) {
-      return true;
+    if (super.canMove(row, column)) {
+      // Case Diagonal (Square -1, -1), 
+      if ((row == this.row - 1 && column == this.column - 1) || (row == this.row + 1 && column == this.column - 1)
+              || (row == this.row + 1 && column == this.column + 1) || (row == this.row - 1 && column == this.column + 1)) {
+        return true;
+      }
+      // Case Horizontal (Square 0, -1), (Square 0, +1),
+      if ((row == this.row && column == this.column - 1) ||(row == this.row && column == this.column + 1)) {
+        return true;
+      }
+      // Case Vertical (Square +1, 0) and (Square -1, 0)
+      if ((row == this.row + 1 && column == this.column) ||(row == this.row - 1 && column == this.column)) {
+        return true;
+      }
+      else return false;
     }
-
-    // Case Horizontal (Square 0, -1), (Square 0, +1),
-    if ((row == this.row && column == this.column - 1) ||(row == this.row && column == this.column + 1)) {
-      return true;
-    }
-
-    // Case Vertical (Square +1, 0) and (Square -1, 0)
-    if ((row == this.row + 1 && column == this.column) ||(row == this.row - 1 && column == this.column)) {
-      return true;
-    }
-
     else return false;
-
   }
 
-  private boolean canMove1(int row, int column) {
-    
-    // Case Diagonal (Square -1, -1),
+  
 
+  private boolean canMove1(int row, int column) {
+    // Case Diagonal (Square -1, -1),
     if (row == this.row - 1) {
     }
 
@@ -64,10 +60,6 @@ class King extends Chess {
     if (row == this.row + 1) {
     }
 
-
-
-
-
     if ((row == this.row - 1 && column == this.column - 1) || (row == this.row + 1 && column == this.column - 1)
           || (row == this.row + 1 && column == this.column + 1) || (row == this.row - 1 && column == this.column + 1)) {
       return true;
@@ -87,41 +79,27 @@ class King extends Chess {
     
   }
 
-
-
-  /**
-  *
-  */
-  //@Override
-  public boolean canAttack(King other) {
+  public boolean canAttack(Chess other) {
     if (this.color == other.getColor()) {
       return false;
     }
     else return canMove(other.getRow(), other.getColumn());
   }
 
-
+}
 
   /**
   * Getter.
-  */
+
   public int getRow() {
     return this.row;
   }
 
-
-  /**
-  * Getter.
-  */
   public int getColumn() {
     return this.column;
   }
 
-  /**
-  * Getter.
-  */
   public Color getColor() {
     return this.color;
   }
-
-}
+  */
